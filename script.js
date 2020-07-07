@@ -90,7 +90,7 @@ fetch(url).then(response => response.json()).then(data => {  console.log(data); 
  })
  })
  
-var name = "Welcome back, Twi!"
+var name = "Welcome back!"
 var i = 0;
 
 // TYPING

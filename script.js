@@ -13,6 +13,7 @@ function newItem(){
 }
 function removeItem(e) {
   e.target.remove();
+  confetti.start(1000);
 }
 document.body.onkeyup = function(e) {
   if (e.keyCode == 13){

@@ -11,7 +11,7 @@ body {
 }
 
 .sidebar {
-  height: 50%;
+  height: 100%;
   max-width: 150px;
   position: fixed; /*keeps it fixed when scrolling*/ 
   z-index: 1; /* Stay on top */

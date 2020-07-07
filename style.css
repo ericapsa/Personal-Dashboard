@@ -1,0 +1,86 @@
+html {
+  font-family: monospace;
+  color: grey;
+}
+
+body {
+  background-color: mint-cream;
+  padding: 5%;
+  padding-right: 25%;
+  background: mintcream;
+}
+
+.sidebar {
+  height: 50%;
+  max-width: 150px;
+  position: fixed; /*keeps it fixed when scrolling*/ 
+  z-index: 1; /* Stay on top */
+  top: 0%; /* Stay at the top (how far from top, measuring in objects)*/
+  right: 0;
+  background-color: grey; /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
+  padding: 5%;
+  color: mintcream;
+}
+
+li {
+  font-size: 15px;
+}
+li:hover{
+  text-decoration: line-through;
+  color: darkgray;
+}
+ul{
+  /*Remove the default circle bullet points*/
+  list-style: none;
+}
+
+input {
+  background: transparent;
+  border: 0;
+  width: 150px;
+  font-family: monospace;
+  font-size: 15px;
+}
+input:focus{
+  outline: none;
+}
+
+#header {
+  height: 10%;
+  width: auto;
+  background: cadetblue;
+  color: mintcream;
+  padding-left: 30px;
+  padding-top: 30px;
+}
+
+#news {
+  background: white;
+  padding: 30px;
+}
+
+#weather {
+  background: white;
+  padding: 10px;
+  padding-left: 30px;
+}
+
+a {  /* Links */
+  /* Keeps it its own block */
+  display: block;
+  color: cadetblue;
+}
+
+h4 {
+  color: grey;
+  font-size: 20px;
+}
+
+img {
+  height: 150px;
+  border-radius: 10%;
+  margin: 10px;
+}
+

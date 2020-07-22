@@ -1,25 +1,87 @@
 // TO-DO 
-function newItem(){
+
+// localStorage.clear() 
+var storage = localStorage.getItem("TODO");
+
+function loadList(array){
+  array.forEach(function(item) {
+    newItem(item.name, item.trash, item.id);
+  });
+}
+
+if (storage) {
+  // changes JSON string into Javascript object so you can manipulate it again
+  data = JSON.parse(storage);
+  // if storage, bring that list into data
+  console.log("about to add old data");
+  loadList(data);
+  // set up for next todo item 
+  id = data.length; 
+} else {
+  // initialize vars to "nothing"
+  id = 0; 
+  data = [];
+}
+
+function newItem(todo, trash, id){
+
+  if(trash === true){ 
+    return; // exit this if i dont want anything done
+  }
+
   var item = document.getElementById("input").value;
   console.log(item);
   /*Store the list element in a var*/
   var list = document.getElementById("list");
   var li = document.createElement("li");
-  li.appendChild(document.createTextNode("☀ " + item));
+  li.appendChild(document.createTextNode("☀ " + todo));
+  li.setAttribute('id', id); 
   list.appendChild(li);
   /*Clear the text in the box*/
-  document.getElementById("input").value = " ";
+  document.getElementById("input").value = "";
   li.onclick = removeItem;
 }
-function removeItem(e) {
-  e.target.remove();
+
+function removeItem(event) {
+  element = event.target; 
+  element.remove();
   confetti.start(1000);
+  
+  //gonna check all items and if there is a match with the item in the list and the current element e we called remove on, we are marking it as trash
+  data.forEach(function(item){
+    if (item.id == element.id){
+      item.trash = true;
+    }
+  })
+  localStorage.setItem("TODO", JSON.stringify(data)); 
 }
+
 document.body.onkeyup = function(e) {
+  todo = document.getElementById("input").value; 
+
   if (e.keyCode == 13){
-    console.log("enter clicked!");
-    newItem();
+    //adding it to the front end 
+    newItem(todo, false, id);
+
+    // add the todo struct into the backend storage with the correct info
+    data.push({ 
+      name: todo,
+      trash: false,
+      id: id
+      
+    }); 
+    // note: need commas to separate items in struct- i was getting so many syntax errors lmao
+    
+    localStorage.setItem("TODO", JSON.stringify(data)); 
+    
+    //now that the item has been added, change the id var for the next one
+    id++;
+    
+
+
   }
+
+
 }
 // ^^ TO-DO
 
@@ -68,7 +130,6 @@ function getWeather() {
   }
 }
 
-
 // NEWS
 let url = "https://api.nytimes.com/svc/topstories/v2/world.json?api-key=Gm3ZhZcGZYX7AC1QmrAGViKZg7Udw9Br";
 let headlines = document.getElementById("headlines");
@@ -81,7 +142,7 @@ fetch(url).then(response => response.json()).then(data => {  console.log(data); 
  let p = document.createElement("p");
  p.innerHTML = article.abstract; 
 
-  let img = document.createElement("img");
+ let img = document.createElement("img");
  img.setAttribute('src', article.multimedia[0].url);
 
   headlines.appendChild(img);
@@ -91,17 +152,17 @@ fetch(url).then(response => response.json()).then(data => {  console.log(data); 
  })
  })
  
-var name = "Welcome back!"
+var welcome = "Welcome back!";
 var i = 0;
 
 // TYPING
 function typeName() {
-  if (i<name.length){
+  if (i<welcome.length){
     // steals html item from my html thru ID
     var nameHeader = document.getElementById("welcome");
     // prints out to the console
     console.log(nameHeader);
-    nameHeader.innerHTML = nameHeader.innerHTML + name.charAt(i);
+    nameHeader.innerHTML = nameHeader.innerHTML + welcome.charAt(i);
     i = i +1;
     // How long the type function will run
     setTimeout(typeName,100);

@@ -34,6 +34,8 @@ li:hover{
 ul{
   /*Remove the default circle bullet points*/
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 input {

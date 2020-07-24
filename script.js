@@ -77,10 +77,7 @@ document.body.onkeyup = function(e) {
     //now that the item has been added, change the id var for the next one
     id++;
     
-
-
   }
-
 
 }
 // ^^ TO-DO
@@ -129,6 +126,7 @@ function getWeather() {
     location.innerHTML = "Unable to retrieve your location";
   }
 }
+getWeather();
 
 // NEWS
 let url = "https://api.nytimes.com/svc/topstories/v2/world.json?api-key=Gm3ZhZcGZYX7AC1QmrAGViKZg7Udw9Br";
@@ -170,4 +168,55 @@ function typeName() {
 }
 
 window.onload = typeName;
-getWeather();
+
+
+
+// COLOR GENERATOR
+function getColor() {
+  return (
+    "#" +
+    Math.random()
+      .toString(16)
+      .slice(2, 8)
+  );
+}
+function setBackground() {
+  var bgColor = getColor();
+  console.log("color: "+ bgColor);
+  document.getElementById("color_block").style.cssText = "background-color: "+ bgColor + ";";
+}
+setBackground();
+
+
+// WORD GENERATOR
+function randomWord() {
+  var nouns = ['Pool','Beach','Cottage', 'Dog', 'Cat','Bunny', 'Forest','Vines', 'Flower','Friends','Lovers'];
+  var adjs = ['Happy','Sad','Smad','Angry', 'Refreshing', 'Quaint', 'Spooky', 'Scary', 'Distressed', 'Anxious','Lovely','Aesthetic','Pastel','Goth'];
+
+  // pick a random word from lists
+  var random_noun = nouns[Math.floor(Math.random()*nouns.length)]; 
+  var random_adj = adjs[Math.floor(Math.random()*adjs.length)];
+
+  console.log(random_adj);
+  console.log(random_noun);
+
+  var nounBox = document.getElementById("noun");
+  var adjBox = document.getElementById("adjective");
+
+  // set the word in the area
+  nounBox.innerHTML = random_noun; 
+  adjBox.innerHTML = random_adj;
+}
+randomWord();
+
+// REFRESH BUTTON
+function click(){
+  var audio = new Audio('FasterClick.m4a');
+  audio.play();
+}
+
+function refreshAll() {
+  randomWord();
+  setBackground();
+  click();
+}

@@ -1,6 +1,6 @@
-// TO-DO 
+// TO-DO
 
-// localStorage.clear() 
+// localStorage.clear()
 var storage = localStorage.getItem("TODO");
 
 function loadList(array){
@@ -15,17 +15,17 @@ if (storage) {
   // if storage, bring that list into data
   console.log("about to add old data");
   loadList(data);
-  // set up for next todo item 
-  id = data.length; 
+  // set up for next todo item
+  id = data.length;
 } else {
   // initialize vars to "nothing"
-  id = 0; 
+  id = 0;
   data = [];
 }
 
 function newItem(todo, trash, id){
 
-  if(trash === true){ 
+  if(trash === true){
     return; // exit this if i dont want anything done
   }
 
@@ -35,7 +35,7 @@ function newItem(todo, trash, id){
   var list = document.getElementById("list");
   var li = document.createElement("li");
   li.appendChild(document.createTextNode("☀ " + todo));
-  li.setAttribute('id', id); 
+  li.setAttribute('id', id);
   list.appendChild(li);
   /*Clear the text in the box*/
   document.getElementById("input").value = "";
@@ -43,40 +43,40 @@ function newItem(todo, trash, id){
 }
 
 function removeItem(event) {
-  element = event.target; 
+  element = event.target;
   element.remove();
   confetti.start(1000);
-  
+
   //gonna check all items and if there is a match with the item in the list and the current element e we called remove on, we are marking it as trash
   data.forEach(function(item){
     if (item.id == element.id){
       item.trash = true;
     }
   })
-  localStorage.setItem("TODO", JSON.stringify(data)); 
+  localStorage.setItem("TODO", JSON.stringify(data));
 }
 
 document.body.onkeyup = function(e) {
-  todo = document.getElementById("input").value; 
+  todo = document.getElementById("input").value;
 
   if (e.keyCode == 13){
-    //adding it to the front end 
+    //adding it to the front end
     newItem(todo, false, id);
 
     // add the todo struct into the backend storage with the correct info
-    data.push({ 
+    data.push({
       name: todo,
       trash: false,
       id: id
-      
-    }); 
+
+    });
     // note: need commas to separate items in struct- i was getting so many syntax errors lmao
-    
-    localStorage.setItem("TODO", JSON.stringify(data)); 
-    
+
+    localStorage.setItem("TODO", JSON.stringify(data));
+
     //now that the item has been added, change the id var for the next one
     id++;
-    
+
   }
 
 }
@@ -132,13 +132,13 @@ getWeather();
 let url = "https://api.nytimes.com/svc/topstories/v2/world.json?api-key=Gm3ZhZcGZYX7AC1QmrAGViKZg7Udw9Br";
 let headlines = document.getElementById("headlines");
 
-fetch(url).then(response => response.json()).then(data => {  console.log(data);  data.results.slice(0,5).map(article => {    console.log(article.title); 
+fetch(url).then(response => response.json()).then(data => {  console.log(data);  data.results.slice(0,5).map(article => {    console.log(article.title);
  let a = document.createElement("a");
  a.setAttribute('href', article.url);
  a.innerHTML = article.title;
 
  let p = document.createElement("p");
- p.innerHTML = article.abstract; 
+ p.innerHTML = article.abstract;
 
  let img = document.createElement("img");
  img.setAttribute('src', article.multimedia[0].url);
@@ -149,7 +149,7 @@ fetch(url).then(response => response.json()).then(data => {  console.log(data); 
 
  })
  })
- 
+
 var welcome = "Welcome back!";
 var i = 0;
 
@@ -190,11 +190,11 @@ setBackground();
 
 // WORD GENERATOR
 function randomWord() {
-  var nouns = ['Pool','Beach','Cottage', 'Dog', 'Cat','Bunny', 'Forest','Vines', 'Flower','Friends','Lovers'];
-  var adjs = ['Happy','Sad','Smad','Angry', 'Refreshing', 'Quaint', 'Spooky', 'Scary', 'Distressed', 'Anxious','Lovely','Aesthetic','Pastel','Goth'];
+  var nouns = ['Pool','Beach','Cottage', 'Dog', 'Cat','Bunny', 'Forest','Vines', 'Flower','Friends','Lovers', 'Hunter', 'Monster', 'Girl', 'Boy'];
+  var adjs = ['Happy','Sad','Angry', 'Refreshing', 'Quaint', 'Spooky', 'Scary', 'Distressed', 'Anxious','Lovely','Aesthetic','Pastel','Goth', 'Winged', 'Shining'];
 
   // pick a random word from lists
-  var random_noun = nouns[Math.floor(Math.random()*nouns.length)]; 
+  var random_noun = nouns[Math.floor(Math.random()*nouns.length)];
   var random_adj = adjs[Math.floor(Math.random()*adjs.length)];
 
   console.log(random_adj);
@@ -204,7 +204,7 @@ function randomWord() {
   var adjBox = document.getElementById("adjective");
 
   // set the word in the area
-  nounBox.innerHTML = random_noun; 
+  nounBox.innerHTML = random_noun;
   adjBox.innerHTML = random_adj;
 }
 randomWord();

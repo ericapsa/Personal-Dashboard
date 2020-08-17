@@ -190,8 +190,7 @@ setBackground();
 
 // WORD GENERATOR
 function randomWord() {
-  var nouns = ['Pool','Beach','Cottage', 'Dog', 'Cat','Bunny', 'Forest','Vines', 'Flower','Friends','Lovers', 'Hunter', 'Monster', 'Girl', 'Boy'];
-  var adjs = ['Happy','Sad','Angry', 'Refreshing', 'Quaint', 'Spooky', 'Scary', 'Distressed', 'Anxious','Lovely','Aesthetic','Pastel','Goth', 'Winged', 'Shining'];
+  // lists stored in separate files
 
   // pick a random word from lists
   var random_noun = nouns[Math.floor(Math.random()*nouns.length)];

@@ -119,7 +119,7 @@ function getWeather() {
         location.innerHTML =
           data.name /*+ " (" + latitude + "°, " + longitude + "°)";
         description.innerHTML = data.weather[0].main; */
-        var celcius = (temp - 32) * (5/9);
+        var celcius = math.round((temp - 32) * (5/9));
         if (data.sys.country == "US") {
           temperature.innerHTML = "Today it is " + temp + "° F and " + data.weather[0].main + " in " + data.name;
         } else {

@@ -114,11 +114,17 @@ function getWeather() {
       .then(data => {
         console.log(data);
         let temp = data.main.temp;
-        temperature.innerHTML = "Today it is " + temp + "° F and " + data.weather[0].main + " in " + data.name;
+        // temperature.innerHTML = "Today it is " + temp + "° F and " + data.weather[0].main + " in " + data.name;
         /* temperature.innerHTML = temp + ;
         location.innerHTML =
           data.name /*+ " (" + latitude + "°, " + longitude + "°)";
         description.innerHTML = data.weather[0].main; */
+        var celcius = (temp - 32) * (5/9);
+        if (data.sys.country == "US") {
+          temperature.innerHTML = "Today it is " + temp + "° F and " + data.weather[0].main + " in " + data.name;
+        } else {
+          temperature.innerHTML = "Today it is " + celcius + "° C and " + data.weather[0].main + " in " + data.name;
+        }
       });
   }
 
